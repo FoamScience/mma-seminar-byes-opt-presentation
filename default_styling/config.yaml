@@ -2,7 +2,7 @@ color_presets:
   main: color.BLUE_E
   bg: color.GRAY_A
   secondary: "#e83e3e"
-  warn: "#14463c"
+  warn: "#ff781e"
   important: "#6495ed"
   text: color.BLACK
   opacity: 0.3

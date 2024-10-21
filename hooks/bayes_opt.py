@@ -99,7 +99,10 @@ def bayes_opt_step(self, cfg, context):
         sample_f = [-obj_func(e) for e in sample]
         if i<4:
             # visualize first three iters
-            self.play(FadeOut(ei_area, gp, run_time=self.fadeout_rt))
+            if i == 0:
+                self.play(FadeOut(ei_area, run_time=self.fadeout_rt))
+            else:
+                self.play(FadeOut(ei_area, gp, run_time=self.fadeout_rt))
             graphs.add(sample_dots[-1])
             iter_text = f"Iteration {i}"
             if i==0:
@@ -118,7 +121,7 @@ def bayes_opt_step(self, cfg, context):
             ce1 = grid.get_area(ce11, bounded_graph=ce12, opacity=0.5, x_range=(-200, 200))
             self.play(DrawBorderThenFill(ce1, run_time=self.drawborderthenfill_rt))
             self.next_slide()
-            ei = grid.plot(lambda x: 100-5*acq_function.utility([[x]], optimizer._gp, 0)[0], color=self.warn_color)
+            ei = grid.plot(lambda x: 100+5*acq_function.utility([[x]], optimizer._gp, 0)[0], color=self.warn_color)
             ei_area = grid.get_area(ei, x_range=(-200, 200), opacity=0.3, color=[self.important_color, self.important_color])
             self.play(FadeOut(ce1, run_time=self.fadeout_rt), FadeIn(ei_area, run_time=self.fadein_rt))
             self.next_slide()
@@ -143,7 +146,7 @@ def bayes_opt_step(self, cfg, context):
                 self.play(DrawBorderThenFill(ce1, run_time=self.drawborderthenfill_rt))
 
                 self.next_slide()
-                ei = grid.plot(lambda x: 100-10*acq_function.utility([[x]], optimizer._gp, 0)[0], color=self.warn_color)
+                ei = grid.plot(lambda x: 100+5*acq_function.utility([[x]], optimizer._gp, 0)[0], color=self.warn_color)
                 ei_area = grid.get_area(ei, x_range=(-200, 200), opacity=0.3, color=[self.important_color, self.important_color])
                 self.play(FadeIn(ei_area, run_time=self.fadein_rt))
         self.next_slide()

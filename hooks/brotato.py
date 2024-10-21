@@ -6,6 +6,7 @@ def brotato_step(self, cfg, context):
     self.image_step(cfg.icon, self.layout[0])
     self.items_step(cfg.description, self.layout[0])
     self.items_step(cfg.objectives, self.last)
+    self.items_step(cfg.conventions, self.last)
     self.reset_step(cfg, self.last)
     import math
     def compute_desire(wave, stat, df, trial):
@@ -166,3 +167,5 @@ def brotato_step(self, cfg, context):
             self.next_slide()
             self.play(FadeIn(graph, legend, run_time=self.fadein_rt))
         self.reset_step(cfg, self.last)
+
+    self.items_step(cfg.objective_results, self.layout[0])

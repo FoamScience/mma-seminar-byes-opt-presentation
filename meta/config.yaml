@@ -1,0 +1,12 @@
+title: "Bayesian Optimization for OpenFOAM"
+footer:
+  text: MMA seminar
+  bold:
+    - MMA meeting
+author: Mohammed Elwardi Fadeli
+time: Oct. 2024
+logo:
+  image: nhr-tu-logo.png
+  scale: 0.6
+base_url: https://foamscience.github.io/mma-seminar-byes-opt-presentation
+thanks: THANK YOU for your attention!

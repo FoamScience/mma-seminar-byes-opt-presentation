@@ -72,8 +72,8 @@ def foam_bo_step(self, cfg, context):
     tt = Text("Trials", font_size=self.s_size, color=self.main_color).move_to(dots[-1].get_center()+LEFT+DOWN).shift(0.2*LEFT)
     self.play(AnimationGroup(*[GrowArrow(a, run_time=self.fadein_rt) for a in arrows]), FadeIn(tt, run_time=self.fadein_rt))
     self.next_slide()
-    self.play(FadeOut(opt_area, tt))
-    self.play(FadeOut(graphs), AnimationGroup(*[FadeOut(d) for d in dots]), AnimationGroup(*[FadeOut(a) for a in arrows]))
+    self.play(FadeOut(opt_area, tt, run_time=self.fadeout_rt))
+    self.play(FadeOut(graphs, run_time=self.fadeout_rt), AnimationGroup(*[FadeOut(d, run_time=self.fadeout_rt) for d in dots]), AnimationGroup(*[FadeOut(a, run_time=self.fadeout_rt) for a in arrows]))
 
     grid = Axes(x_range=[2, 10, 2], y_range=[2, 10, 2],
                 x_length=5, y_length=5, tips=False,

@@ -14,11 +14,11 @@ slides:
     content:
       - type: items
         bullets:
-          - What's so good about Bayesian Optimization?
-          - Bayesian Optimization workflow - a No-Equations approach
+          - "Bayesian Optimization: Benefits and Challenges"
+          - Bayesian Optimization Workflow - a No-Equations approach
           - "foamBO: Bayesian Optimization on OpenFOAM cases"
-          - "foamBO: Use case showcase"
-          - "Extreme Test Case: Huge search spaces"
+          - "foamBO: Some use cases"
+          - "Extreme Case: Dealing with huge search spaces"
         distance: 4
         anchor: "{{ title }}"
       - type: text
@@ -37,22 +37,22 @@ slides:
         distance: 2
         anchor: "{{ last }}"
 
-  - title: What's so good about Bayesian Optimization?
-    number: "1.0"
+  - title: "Bayesian Optimization: Benefits and Challenges"
+    number: "1❱"
     content:
       - type: items
         bullets:
           - Faster convergence, less expensive function evaluations
-          - Can handle large search spaces
+          - Can handle somewhat large search spaces efficiently
           - Can handle noisy/stochastic objective functions well enough
-          - End up with surrogate models, with uncertainty info!
+          - End up with surrogate models, with uncertainty estimates!
           - Convergence metrics based on probability of improvement
         distance: 4
         anchor: "{{ title }}"
       - type: items
         bullets:
           - "↓ Easy to get stuck at local optima!"
-          - "↓ Poor scability with high-dimentional optimization problems..."
+          - "↓ Cost for updating surrogates can be too high for high-dimentional problems"
         distance: 15
         anchor: "{{ title }}"
         colors:
@@ -68,15 +68,15 @@ slides:
         anchor: "{{ title }}"
       - type: items
         bullets:
-          - Assuming? OF values are samples from  a Gaussian process
+          - Assuming? OF values are samples from  a Gaussian Process
           - "Gaussian process: connect dots smoothly from know data points"
           - "'smoothly' as in: can be modeled with a normal distribution"
           - Can also switch to random forests, ... etc
         distance: 2
         anchor: "{{ last }}"
 
-  - title: Bayesian Optimization workflow
-    number: "2.0"
+  - title: Bayesian Optimization Workflow
+    number: "2❱"
     hook:
       name: bayes_opt
       filename: hooks/bayes_opt.py
@@ -85,6 +85,16 @@ slides:
       acquisition_function: "ei" # or 'ucb' or 'poi'
       kappa: 5 # default: 2.576, higher favores least explored spaces 
       n_iters: 20
+      benchmark:
+        type: text
+        text: foamBO configuration for such a problem
+        next_to:
+          target: "{{ title }}"
+          dir: 2*DOWN
+        align_to:
+          target: "{{ title }}"
+          dir: LEFT
+        no_next_slide: true
       parameters:
         type: code
         language: yaml
@@ -100,7 +110,7 @@ slides:
             "/FxDict":
               x: "x"
         to_edge: LEFT
-        shift: 0.5*UP
+        shift: 0.5*DOWN
       objectives:
         type: code
         language: yaml
@@ -109,15 +119,17 @@ slides:
           objectives:
             F1:
               mode: 'shell'
+              # command must write a scalar to stdout
               command: './F --F F1 --k 1 --m 0 --lb 0.01'
+              # try to focus trials around this value
               threshold: 0
               minimize: True
               lower_is_better: True
         to_edge: RIGHT
-        shift: 0.5*UP
+        shift: 0.5*DOWN
 
   - title: "foamBO: Bayesian Optimization on OpenFOAM cases"
-    number: "2.0"
+    number: "3❱"
     hook:
       name: foam_bo
       filename: hooks/foam_bo.py
@@ -138,8 +150,8 @@ slides:
         distance: 11
         anchor: "{{ title }}"
 
-  - title: "foamBO: Use case showcase"
-    number: "3.0"
+  - title: "foamBO: Some use cases"
+    number: "4❱"
     content:
       - type: text
         text: "Sandia Flame D"
@@ -199,8 +211,8 @@ slides:
           target: "{{ title }}"
           dir: LEFT
 
-  - title: "Extreme Test Case: Huge search spaces"
-    number: "4.0"
+  - title: "Extreme Case: Dealing with huge search spaces"
+    number: "5❱"
     hook:
       name: brotato
       filename: hooks/brotato.py

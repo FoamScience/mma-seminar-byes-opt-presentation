@@ -127,8 +127,8 @@ def bayes_opt_step(self, cfg, context):
             self.next_slide()
         else:
             if i == niters-1:
-                self.play(FadeOut(ei_area), FadeOut(gp),
-                    Transform(lbl, Text("After some iterations...", font_size=self.s_size).move_to(lbl_position)))
+                self.play(FadeOut(ei_area, gp, run_time=self.fadeout_rt),
+                    Transform(lbl, Text("After some iterations...", font_size=self.s_size).move_to(lbl_position), run_time=self.transform_rt))
 
                 graphs.add(*sample_dots[4:])
                 anims = [d.animate.set_color(self.main_color) for d in sample_dots[:3]]
@@ -154,5 +154,6 @@ def bayes_opt_step(self, cfg, context):
     # code configuration
     self.keep_only_objects(self.layout)
     self.last = self.layout[0]
+    self.text_step(cfg.benchmark, self.last)
     self.code_step(cfg.parameters, self.last)
     self.code_step(cfg.objectives, self.last)
